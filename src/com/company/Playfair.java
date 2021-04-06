@@ -163,11 +163,11 @@ public class Playfair implements CipherInterface {
     }
 
     @Override
-    public String decrypt(String cipherText) {
+    public String decrypt(String ciphertext) {
         StringBuilder decryption = new StringBuilder();
-        for(int i = 0; i < cipherText.length(); i+=2){
-            char firstLetter = cipherText.charAt(i);
-            char secondLetter = cipherText.charAt(i+1);
+        for(int i = 0; i < ciphertext.length(); i+=2){
+            char firstLetter = ciphertext.charAt(i);
+            char secondLetter = ciphertext.charAt(i+1);
             decryption.append(cryptPair(firstLetter, secondLetter, Crypt.DECRYPTION));
         }
         return decryption.toString();

@@ -8,8 +8,9 @@ public class Main {
 	    String crypt = args[2];
 	    String inputFile = args[3];
 	    String outputFile = args[4]; */
-	    Playfair playfair = new Playfair("playfair example");
-	    System.out.println(playfair.decrypt(playfair.encrypt("jack jump iggit")));
+	    Vigenre vigenre = new Vigenre("deceptivedeceptivedeceptive");
+	    String encryption = vigenre.encrypt("wearediscoveredsaveyourself");
+	    System.out.println(vigenre.decrypt(encryption));
     }
 
     public static String cleanKey(String key){
