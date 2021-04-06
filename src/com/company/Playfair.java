@@ -23,7 +23,7 @@ public class Playfair implements CipherInterface {
         DECRYPTION
     }
 
-    HashMap<Character, Coordinates> indexLookup;
+    HashMap<Character, Coordinates> indexLookup; //Used to instantly obtain the location of a letter within the matrix
     char [][] letterMatrix;
 
     public Playfair(String key){
@@ -38,14 +38,14 @@ public class Playfair implements CipherInterface {
         int index = 0;
         for(int i = 0; i < key.length(); i++){
             char letter = key.charAt(i);
-            if(addLetterToLookup(letter, index, alphabet)){
+            if(addLetterToKey(letter, index, alphabet)){
                 index++;
             }
         }
         int size = alphabet.size();
         for(int i = 0; i < size; i++){
             char letter = alphabet.first();
-            if(addLetterToLookup(letter, index, alphabet)){
+            if(addLetterToKey(letter, index, alphabet)){
                 index++;
             }
         }
@@ -53,6 +53,7 @@ public class Playfair implements CipherInterface {
         return true;
     }
 
+    //Creates a TreeSet that contains the characters a-z
     public TreeSet<Character> alphabet(){
         TreeSet<Character> alphabet = new TreeSet<>();
         char letter = 'a';
@@ -64,7 +65,7 @@ public class Playfair implements CipherInterface {
         return alphabet;
     }
 
-    public boolean addLetterToLookup(char letter, int index, TreeSet<Character> alphabet){
+    public boolean addLetterToKey(char letter, int index, TreeSet<Character> alphabet){
         if(alphabet.contains(letter)) {
             int row = index / ROWLENGTH;
             int col = index % COLLENGTH;
@@ -78,7 +79,7 @@ public class Playfair implements CipherInterface {
 
     @Override
     public String encrypt(String plainText) {
-        plainText = cleanStringForEncryption(plainText);
+        plainText = preparePlainTextForEncryption(plainText);
         StringBuilder encryption = new StringBuilder();
         for(int i = 0; i < plainText.length(); i+=2){
             char firstLetter = plainText.charAt(i);
@@ -88,21 +89,22 @@ public class Playfair implements CipherInterface {
         return encryption.toString();
     }
 
-    public static String cleanStringForEncryption(String plainText){
-        StringBuilder cleanedText = new StringBuilder();
+    public static String preparePlainTextForEncryption(String plainText){
+        StringBuilder preparedPlainText = new StringBuilder();
         for(int i = 0; i < plainText.length()-1; i++){
             char letter = Character.toLowerCase(plainText.charAt(i));
             char nextLetter = Character.toLowerCase(plainText.charAt(i+1));
-            addCleanedCharacter(cleanedText, letter, nextLetter);
+            addPreparedCharacter(preparedPlainText, letter, nextLetter);
         }
         char last = plainText.charAt(plainText.length()-1);
-        addCleanedCharacter(cleanedText, last);
-        if(isOdd(cleanedText.length())){
-            cleanedText.append('x');
+        addPreparedCharacter(preparedPlainText, last);
+        if(isOdd(preparedPlainText.length())){
+            preparedPlainText.append('x');
         }
-        return cleanedText.toString();
+        return preparedPlainText.toString();
     }
 
+    //Encrypts or decrypts a pair of letters
     public String cryptPair(char letter1, char letter2, Crypt crypt){
         //When encrypting and letters are in the same row or col, you go right or down (+1).
         //When decrypting and letters are in the same row or col, you go up or left (-1 or +4).
@@ -136,20 +138,21 @@ public class Playfair implements CipherInterface {
         return one.col == two.col;
     }
 
-    public static boolean addCleanedCharacter(StringBuilder cleanedText, char letter, char nextLetter){
+    public static boolean addPreparedCharacter(StringBuilder preparedText, char letter, char nextLetter){
         if(Character.isLetter(letter)){
-            cleanedText.append(letter);
+            preparedText.append(letter);
+            //If there are two letters in a row, the rule for Playfair is to add 'x'
             if(letter == nextLetter){
-                cleanedText.append('x');
+                preparedText.append('x');
             }
             return true;
         }
         return false;
     }
 
-    public static boolean addCleanedCharacter(StringBuilder cleanedText, char letter){
+    public static boolean addPreparedCharacter(StringBuilder preparedText, char letter){
         if(Character.isLetter(letter)){
-            cleanedText.append(letter);
+            preparedText.append(letter);
             return true;
         }
         return false;
