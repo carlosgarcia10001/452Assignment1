@@ -8,9 +8,10 @@ public class Main {
 	    String crypt = args[2];
 	    String inputFile = args[3];
 	    String outputFile = args[4]; */
-	    Railfence railfence = new Railfence("3");
-	    String encryption = railfence.encrypt("meetmeafterthetogaparty");
-	    System.out.println(encryption);
+	    Vigenre vigenre = new Vigenre("deceptivedeceptivedeceptive");
+	    String encryption = vigenre.encrypt("wearediscoveredsaveyourself");
+	    System.out.println(vigenre.encrypt("wearediscoveredsaveyourself"));
+	    System.out.println(vigenre.decrypt(encryption));
     }
 
     public static String cleanKey(String key){
