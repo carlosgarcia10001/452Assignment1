@@ -21,7 +21,7 @@ public class Vigenre implements CipherInterface{
         for(int i = 0; i < plaintext.length(); i++){
             int row = convertLetterToIndex(key[i]);
             int col = convertLetterToIndex(plainText[i]);
-            encryption.append((char)(ALPHABETOFFSET+(row+col)%26));
+            encryption.append((char)(ALPHABETOFFSET+(row+col)%ALPHABETLENGTH));
         }
         return encryption.toString();
     }
@@ -36,7 +36,8 @@ public class Vigenre implements CipherInterface{
         StringBuilder decryption = new StringBuilder();
         for(int i = 0; i < cipherText.length; i++){
             int row = convertLetterToIndex(key[i]);
-            char letter = (char)(ALPHABETOFFSET+((ALPHABETLENGTH-row+convertLetterToIndex(cipherText[i]))%ALPHABETLENGTH));
+            int col = convertLetterToIndex(cipherText[i]);
+            char letter = (char)(ALPHABETOFFSET+((ALPHABETLENGTH-row+col)%ALPHABETLENGTH));
             decryption.append(letter);
         }
         return decryption.toString();
