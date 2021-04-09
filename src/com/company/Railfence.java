@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Arrays;
+
 public class Railfence implements CipherInterface{
     int key;
 
@@ -33,6 +35,24 @@ public class Railfence implements CipherInterface{
 
     @Override
     public String decrypt(String ciphertext) {
-        return null;
+        char [] cipherText = ciphertext.toCharArray();
+        int cipherLength = ciphertext.length();
+        int generalRowLength = cipherLength/key;
+        int extraCharacterRows = cipherLength%key;
+        int firstRowLength = generalRowLength+Math.min(extraCharacterRows,1);
+        char [] decryption = new char[cipherLength];
+        int cipherIndex = 0;
+        boolean extraCharacter = true;
+        for(int i = 0; i < key; i++){
+            if(i >= extraCharacterRows){
+                extraCharacter = false;
+            }
+            int lastEvaluationIndex = extraCharacter ? key*firstRowLength : key*generalRowLength;
+            for(int j = i; j < lastEvaluationIndex;j+=key){
+                decryption[j] = cipherText[cipherIndex];
+                cipherIndex++;
+            }
+        }
+        return String.valueOf(decryption);
     }
 }
