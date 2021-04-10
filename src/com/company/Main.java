@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -9,9 +11,10 @@ public class Main {
 	    String inputFile = args[3];
 	    String outputFile = args[4];
 	    Railfence railfence = new Railfence("3");
-	    String encryption = railfence.encrypt("meetmeafterthetogaparty");
-	    System.out.println(encryption);
-	    System.out.println(railfence.decrypt(encryption));
+	    String key = "3 4 2 1 5 6 7";
+	    RowTransposition rowTransposition = new RowTransposition(key);
+		String encryption = rowTransposition.encrypt("attackpostponeduntiltwoamxyz");
+		System.out.println(encryption);
     }
 
     public static String cleanKey(String key){
