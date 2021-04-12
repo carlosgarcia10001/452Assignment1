@@ -1,17 +1,30 @@
 package com.company;
 
+import java.lang.Exception;
+
 public class Vigenre implements CipherInterface{
     char [] key;
     final int ALPHABETOFFSET = 97;
     final int ALPHABETLENGTH = 26;
+    Boolean keySet = false;
     public Vigenre(String key){
-        setKey(key);
+        this.keySet = setKey(key);
+
     }
 
     @Override
     public boolean setKey(String key) {
-        this.key = key.toCharArray();
-        return true;
+        for(int i = 0; i < key.length(); i++)
+        {
+            if(isLetter(key.charAt(i)))
+        }
+        if(key.length() >= 2 || key)
+        {
+            this.key = key.toCharArray();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
