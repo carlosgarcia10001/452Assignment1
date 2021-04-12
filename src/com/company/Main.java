@@ -31,7 +31,7 @@ public class Main {
 			return;
 		}
 		String cipherName = args[0];
-		String key = cleanKey(args[1]);
+		String key = args[1];
 	    String method = args[2].toLowerCase();
 		String defaultMethod = "encrypt";
 		String inputPath = args[3];
