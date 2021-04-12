@@ -1,7 +1,5 @@
 package com.company;
 
-import java.lang.Exception;
-
 public class Vigenre implements CipherInterface{
     char [] key;
     final int ALPHABETOFFSET = 97;
@@ -14,17 +12,8 @@ public class Vigenre implements CipherInterface{
 
     @Override
     public boolean setKey(String key) {
-        for(int i = 0; i < key.length(); i++)
-        {
-            if(isLetter(key.charAt(i)))
-        }
-        if(key.length() >= 2 || key)
-        {
-            this.key = key.toCharArray();
-            return true;
-        } else {
-            return false;
-        }
+        this.key = key.toCharArray();
+        return true;
     }
 
     @Override
