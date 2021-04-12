@@ -95,6 +95,6 @@ class Caesar implements CipherInterface {
             else if (mode == 1) {
                 resultText += decrypt(text); 
             }
-        return resultText; 
+        return resultText;
     }
 }

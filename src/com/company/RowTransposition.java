@@ -53,7 +53,6 @@ public class RowTransposition implements CipherInterface{
         StringBuilder encryption = new StringBuilder();
         int rowLength = plainText.length/this.keyLength;
         for(int i = 0; i < keyLength; i++) {
-            StringBuilder colLetters = new StringBuilder();
             for (int j = 0; j < rowLength; j++) {
                 encryption.append(matrix[j][key.get(i)]);
             }
