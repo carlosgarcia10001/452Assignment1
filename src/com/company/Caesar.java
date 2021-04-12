@@ -1,5 +1,4 @@
 package com.company;
-import java.util.*;
 
 class Caesar implements CipherInterface {
 
@@ -85,7 +84,7 @@ class Caesar implements CipherInterface {
         return result.toString();
     }
 
-    public String processString(String text, int key, int mode) { 
+    public String processString(String text, int mode) { 
 
         String resultText = " ";
             // encrypt mode 
@@ -94,50 +93,8 @@ class Caesar implements CipherInterface {
             }
             //decrypt mode 
             else if (mode == 1) {
-                resultText += decrypt(text);
+                resultText += decrypt(text); 
             }
-        return resultText; 
+        return resultText;
     }
-
-    // public static void main(String []args){
-    //     String text = "thisz z z is a test message 1255644//3 z x y ";
-    //     String cipher = encrypt(text, 27);
-    //     System.out.println("Encrypt txt:  "  + cipher);
-    //     String cipher2 = decrypt(cipher, 27); 
-    //     System.out.println("Decrypt txt:  " + cipher2);
-    //     System.out.println("");
-
-    //     int key = 1;
-    //     String cipher10 = processString("helloworld", key, 0);
-    //     System.out.println("Ciphertext =  " + cipher10);
-    //     String cipher11 = processString(cipher10, key, 1);
-    //     System.out.println("Ciphertext =  " + cipher11);
-        
-        
-    //     // tool for reading user input 
-    //     Scanner in = new Scanner(System.in);
-
-    //     // Print "Write a message: "
-    //     System.out.println("Write a message: ");
-        
-    //     //get input
-    //     String texts = in.nextLine();
-        
-        
-    //     if (texts.isEmpty()) {
-    //         System.out.println("Scanner is empty");
-    //     }
-    //     // if the is not empty, proceed to print, encrypt, and decrypt msg
-    //     else if(!texts.isEmpty()) {
-            
-    //         // Print the message written by the user
-    //         System.out.println("message is: " + texts);
-    //         String cipher3 = encrypt (texts, 27);
-    //         System.out.println("Encrypt txt:  "  + cipher3);
-    //         String cipher4 = decrypt (cipher3, 27); 
-    //         System.out.println("Decrypt txt:  "  + cipher4);
-    //     }
-    //     in.close();
-        
-    //  }
 }
