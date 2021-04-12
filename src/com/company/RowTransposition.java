@@ -80,6 +80,22 @@ public class RowTransposition implements CipherInterface{
 
     @Override
     public String decrypt(String ciphertext) {
-        return null;
+        int rowLength = ciphertext.length()/keyLength;
+        char [][] decryptionMatrix = new char[rowLength][keyLength];
+        char [] cipherText = ciphertext.toCharArray();
+        int cipherIndex = 0;
+        for(int i = 0; i < keyLength; i++){
+            for(int j = 0; j < rowLength; j++){
+                decryptionMatrix[j][key.get(i)] = cipherText[cipherIndex];
+                cipherIndex++;
+            }
+        }
+        StringBuilder decryption = new StringBuilder();
+        for(int i = 0; i < decryptionMatrix.length; i++){
+            for(int j = 0; j < decryptionMatrix[i].length; j++){
+                decryption.append(decryptionMatrix[i][j]);
+            }
+        }
+        return decryption.toString();
     }
 }

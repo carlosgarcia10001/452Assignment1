@@ -14,6 +14,7 @@ public class Main {
 	    RowTransposition rowTransposition = new RowTransposition(key);
 		String encryption = rowTransposition.encrypt("attackpostponeduntiltwoamxyz");
 		System.out.println(encryption);
+		System.out.println(rowTransposition.decrypt(encryption));
     }
 
     public static String cleanKey(String key){
