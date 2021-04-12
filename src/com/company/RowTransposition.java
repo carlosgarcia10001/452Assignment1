@@ -29,7 +29,7 @@ public class RowTransposition implements CipherInterface{
            if(currentNumber.length() > 0){
                int row = Integer.parseInt(currentNumber.toString());
                keyLength = Math.max(keyLength, row);
-               parsedKey.add(row);
+               parsedKey.add(row-1);
            }
            else{
                index++;
@@ -52,19 +52,12 @@ public class RowTransposition implements CipherInterface{
         char [][] matrix = createMatrix(plainText);
         StringBuilder encryption = new StringBuilder();
         int rowLength = plainText.length/this.keyLength;
-        HashMap<Integer, String> columnLookup = new HashMap<>();
-        for(int col: key){
+        for(int i = 0; i < keyLength; i++) {
             StringBuilder colLetters = new StringBuilder();
-            for(int i = 0; i < rowLength; i++){
-                colLetters.append(matrix[i][col-1]);
+            for (int j = 0; j < rowLength; j++) {
+                encryption.append(matrix[j][key.get(i)]);
             }
-            columnLookup.put(col,colLetters.toString());
         }
-
-        for(int i = 1; i <= keyLength; i++){
-            encryption.append(columnLookup.get(i));
-        }
-
         return encryption.toString();
     }
 

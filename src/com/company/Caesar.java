@@ -90,11 +90,11 @@ class Caesar implements CipherInterface {
         String resultText = " ";
             // encrypt mode 
             if (mode == 0) {
-                resultText += encrypt(text, key);
+                resultText += encrypt(text);
             }
             //decrypt mode 
             else if (mode == 1) {
-                resultText += decrypt(text, key); 
+                resultText += decrypt(text);
             }
         return resultText; 
     }
