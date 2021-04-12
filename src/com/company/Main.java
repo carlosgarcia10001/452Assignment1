@@ -91,7 +91,7 @@ public class Main {
 
 		System.out.println("Writing output to " + outputPath + ".");
 
-		outputCipher(outputPath, output);	
+		outputCipher(outputPath, output);
     }
 
     public static String cleanKey(String key){
